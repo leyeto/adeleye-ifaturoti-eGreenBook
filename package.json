@@ -1,0 +1,42 @@
+{
+  "name": "adeleye-ifaturoti-egreenbook",
+  "version": "1.0.0",
+  "description": "BrainStation Capstone project full stack record keeping system",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "(cd client && npm install); (cd server && npm install)",
+    "client": "npm start --prefix ./client",
+    "server": "nodemon ./server/index.js",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/leyeto/adeleye-ifaturoti-eGreenBook.git"
+  },
+  "keywords": [
+    "redbook",
+    "eRecord",
+    "weight-log",
+    "health",
+    "react",
+    "full-stack",
+    "express"
+  ],
+  "author": "Adeleye Ifaturoti",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/leyeto/adeleye-ifaturoti-eGreenBook/issues"
+  },
+  "homepage": "https://github.com/leyeto/adeleye-ifaturoti-eGreenBook#readme",
+  "dependencies": {
+    "concurrently": "^7.3.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "moment": "^2.29.4"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
+}
