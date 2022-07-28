@@ -1,6 +1,13 @@
 import "./WelcomePage.scss";
-const WelcomePage = () => {
-  return <div></div>;
+const WelcomePage = ({ patientDetails }) => {
+  return (
+    <div>
+      <ol>
+        <li>Name : {patientDetails.name}</li>
+        <li>NHS Number : {patientDetails.nhs}</li>
+      </ol>
+    </div>
+  );
 };
 
 export default WelcomePage;
