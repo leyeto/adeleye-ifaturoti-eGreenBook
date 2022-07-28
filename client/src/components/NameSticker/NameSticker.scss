@@ -1,0 +1,8 @@
+@use "../../styles/partials/colors" as *;
+.name-sticker {
+  width: 10rem;
+  height: 6rem;
+  background-color: $eRed-white;
+  border: $eRed-black 1px solid;
+  border-radius: 1rem;
+}
