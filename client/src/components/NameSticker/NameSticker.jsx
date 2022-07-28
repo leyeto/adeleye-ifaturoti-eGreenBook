@@ -2,23 +2,14 @@ import React from "react";
 import { useState } from "react";
 import "./NameSticker.scss";
 
-const NameSticker = () => {
-  const patient = {
-    name: "John Doe",
-    dob: "14/05/2022",
-    gestation: "42 weeks",
-  };
-
-  const [patientName, setPatientName] = useState(patient.name);
-  const [dob, setDob] = useState(patient.dob);
-  const [gestation, setGestation] = useState(patient.gestation);
-
+const NameSticker = ({ patientDetails }) => {
   return (
     <div className="name-sticker">
       <ol>
-        <li>Name : {patientName}</li>
-        <li>Date of Birth : {dob}</li>
-        <li>gestation : {gestation}</li>
+        <li>Name : {patientDetails.name}</li>
+        <li>Date of Birth : {patientDetails.dob}</li>
+        <li>NHS Number : {patientDetails.nhs}</li>
+        <li>Gestation : {patientDetails.gestation}</li>
       </ol>
     </div>
   );
