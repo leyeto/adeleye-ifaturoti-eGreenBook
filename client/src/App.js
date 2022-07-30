@@ -10,7 +10,7 @@ function App() {
     dob: "14/05/2022",
     gestation: "43 weeks",
     nhs: "799 802 9684",
-    image: "",
+    imgSrc: "",
   };
 
   const [patientDetails, setPatientDetails] = useState(patient);
