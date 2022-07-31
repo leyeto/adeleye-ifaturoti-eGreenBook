@@ -36,7 +36,18 @@ const WeightLog = () => {
       clinician: "Sandra",
     },
   ];
-  const [weights, setWeights] = useState([weightData]);
+  const [weights, setWeights] = useState(weightData);
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    const newDate = e.target[0].value;
+    const newWeight = e.target[1].value;
+    const newAge = e.target[2].value;
+    setWeights([
+      ...weights,
+      { date: newDate, weight: newWeight, age: newAge, clinician: "Default" },
+    ]);
+  };
 
   return (
     <>
@@ -52,8 +63,7 @@ const WeightLog = () => {
         </thead>
 
         <tbody>
-          {weights[0].map((weightEntry, i) => {
-            console.log({ weights });
+          {weights.map((weightEntry, i) => {
             return (
               <tr key={i}>
                 <td>{weightEntry.date}</td>
@@ -65,9 +75,24 @@ const WeightLog = () => {
           })}
         </tbody>
       </table>
+      <form onSubmit={(e) => submitHandler(e)}>
+        <div className="date">
+          <label htmlFor="date">Date</label>
+          <input type="text" />
+        </div>
+        <div className="weight">
+          <label htmlFor="weight">Weight</label>
+          <input type="text" />
+        </div>
+        <div className="age">
+          <label htmlFor="date">Age</label>
+          <input type="text" />
+        </div>
+        <input type="submit" />
+      </form>
       {/* GRAPH FOR DATA STARTS HERE */}
 
-      <LineChart width={400} height={400} data={weights[0]}>
+      <LineChart width={400} height={400} data={weights}>
         <Line type="monotone" dataKey="weight" stroke="#8884d8" />
         <XAxis dataKey="age" type="number" />
         <YAxis dataKey="weight" type="number" />
