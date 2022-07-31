@@ -19,7 +19,7 @@ const WelcomePage = ({ patientDetails }) => {
         <img
           className="welcome__baby-photo"
           src={patientDetails.imgSrc}
-          alt="baby's photo from imgSrc"
+          alt="baby's pic"
         />
       </div>
     </div>

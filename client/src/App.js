@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import NameSticker from "./components/NameSticker/NameSticker";
 import WelcomePage from "./components/WelcomePage/WelcomePage";
 import { useState } from "react";
+import WeightLog from "./components/WeightLog/WeightLog";
 
 function App() {
   const patient = {
@@ -10,6 +11,7 @@ function App() {
     dob: "14/05/2022",
     gestation: "43 weeks",
     nhs: "799 802 9684",
+    sex: "male",
     imgSrc: "",
   };
 
@@ -17,17 +19,17 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Welcome to eRed Book</h1>
-
       <Routes>
+        <Route
+          exact
+          path="/"
+          element={<WelcomePage patientDetails={patientDetails} />}
+        />
         <Route
           path="/sticker"
           element={<NameSticker patientDetails={patientDetails} />}
         />
-        <Route
-          path="/welcome"
-          element={<WelcomePage patientDetails={patientDetails} />}
-        />
+        <Route path="/weights" element={<WeightLog />} />
       </Routes>
     </div>
   );
