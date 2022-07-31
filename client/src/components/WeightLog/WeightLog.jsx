@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { LineChart, Line, XAxis, YAxis } from "recharts";
 
 import "./WeightLog.scss";
 
@@ -18,14 +19,14 @@ const WeightLog = () => {
     },
     {
       date: "12/04/2020",
-      age: 62,
-      weight: 7,
+      age: 46,
+      weight: 6,
       clinician: "Sandra",
     },
     {
       date: "12/05/2020",
-      age: 35,
-      weight: 9,
+      age: 50,
+      weight: 7.2,
       clinician: "Sandra",
     },
     {
@@ -64,6 +65,13 @@ const WeightLog = () => {
           })}
         </tbody>
       </table>
+      {/* GRAPH FOR DATA STARTS HERE */}
+
+      <LineChart width={400} height={400} data={weights[0]}>
+        <Line type="monotone" dataKey="weight" stroke="#8884d8" />
+        <XAxis dataKey="age" type="number" />
+        <YAxis dataKey="weight" type="number" />
+      </LineChart>
     </>
   );
 };
