@@ -1,1 +1,6 @@
 @forward "./styles/partials/";
+
+.App {
+  width: min(100% - 3.2rem, 1280px);
+  margin: 1.6rem auto;
+}
