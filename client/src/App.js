@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import NameSticker from "./components/NameSticker/NameSticker";
 import WelcomePage from "./components/WelcomePage/WelcomePage";
 import { useState } from "react";
+import ClinicalNotes from "./components/ClinicalNotes/ClinicalNotes";
 import WeightLog from "./components/WeightLog/WeightLog";
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
           element={<NameSticker patientDetails={patientDetails} />}
         />
         <Route path="/weights" element={<WeightLog />} />
+        <Route path="/notes" element={<ClinicalNotes />} />
       </Routes>
     </div>
   );
