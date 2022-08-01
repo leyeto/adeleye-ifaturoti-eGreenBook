@@ -1,6 +1,8 @@
+import { useState } from "react";
 import "./ClinicalNotes.scss";
 
 const ClinicalNotes = () => {
+  const [clinicalNotes, setClinicalNotes] = useState(notes);
   const notes = [
     {
       id: 1,
