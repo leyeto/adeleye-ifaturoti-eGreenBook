@@ -5,8 +5,10 @@
 exports.up = function (knex) {
   return knex.schema.createTable("weights", (table) => {
     table.increments("weight_id").primary();
+    // table.string("date").notNullable();
     table.timestamp("date_weighed").defaultTo(knex.fn.now());
-    table.decimal("child's age").notNullable();
+    table.decimal("weight").notNullable();
+    table.decimal("child_age").notNullable().defaultTo(0);
     table
       .integer("clinician_id")
       .unsigned()
