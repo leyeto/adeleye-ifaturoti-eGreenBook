@@ -1,16 +1,13 @@
 const patient = {
   id: 1,
-  firstName: "Terry",
-  lastName: "Medhurst",
-  maidenName: "Smitham",
+  first_name: "Terry",
+  last_name: "Medhurst",
   gender: "male",
-  dob: "15/07/2022",
-
-  bloodGroup: "A−",
+  blood_group: "A+",
+  dob: "2019-01-22 02:53:53",
+  nhs_number: "714 4653 8532",
   birth_height: 3.6,
   birth_weight: 4,
-  eyeColor: "Green",
-  hair: { color: "Black", type: "Strands" },
 };
 
-modules.exports = patient;
+module.exports = patient;
