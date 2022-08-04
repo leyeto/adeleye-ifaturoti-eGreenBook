@@ -6,6 +6,7 @@ const path = require("path");
 
 // const patientRouter = require("./routes/patientRoute");
 const usersRouter = require("./routes/usersRoute");
+const patientRouter = require("./routes/patientRoute");
 
 const cors = require("cors");
 
@@ -20,7 +21,7 @@ app.get("/", (_req, res) => {
 
 app.use("/register", usersRouter);
 
-// app.get("/patient", patientRouter);
+app.use("/patient", patientRouter);
 
 app.use(express.static(path.join(__dirname, "public")));
 

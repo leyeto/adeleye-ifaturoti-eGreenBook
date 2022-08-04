@@ -4,4 +4,4 @@ class Patient extends Model {
   static tableName = "patient";
 }
 
-module.exports = User;
+module.exports = Patient;
