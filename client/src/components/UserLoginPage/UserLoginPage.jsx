@@ -9,6 +9,8 @@ const UserLoginPage = () => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
 
+  const BASE_API = process.env.API;
+
   return <div className="user-login">UserLoginPage</div>;
 };
 
