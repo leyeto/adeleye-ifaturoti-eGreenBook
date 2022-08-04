@@ -1,4 +1,4 @@
-const User = require("../models/usersModel");
+const User = require("../models/userModel");
 
 const addUser = async (req, res) => {
   console.log("addUser from usersController called");
