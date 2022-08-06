@@ -27,18 +27,20 @@ const authUser = async (req, res) => {
     .select()
     .where("username", "=", username)
     .then((user) => {
-      bcrypt.compare(password, user[0].password, function (_, success) {
+      bcrypt.compare(password, user[0].password, function (err, success) {
         console.log("username ", username);
-        if (!success) {
+        console.log("passwordEntered ", password);
+        console.log("DBpassword ", user[0].password);
+        if (err) {
           return res
             .status(403)
             .json({ message: "Username/Password combination is incorrect" });
+        } else {
+          const token = signJwtToken(user[0]);
+          console.log("success reached");
+
+          return res.status(200).send({ authtoken: token });
         }
-
-        const token = signJwtToken(user[0]);
-        console.log("success reached");
-
-        return res.status(200).send({ authtoken: token });
       });
     })
     .catch((err) => console.log(err));
