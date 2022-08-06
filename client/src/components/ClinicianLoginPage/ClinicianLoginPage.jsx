@@ -1,18 +1,18 @@
+import "./ClinicianLoginPage.scss";
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
-import "./UserLoginPage.scss";
 
 const axios = require("axios");
 
-const UserLoginPage = () => {
-  const [UserIsLoggedIn, setUserIsLoggedIn] = useState(false);
+const ClinicianLoginPage = () => {
+  const [ClinicianIsLoggedIn, setClinicianIsLoggedIn] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
-  const [username, setUserName] = useState("");
+  const [userName, setUserName] = useState("");
   const [userPassword, setUserPassword] = useState("");
 
-  const BASE_API = process.env.REACT_APP_API;
+  const BASE_API = process.env.API;
 
   useEffect(() => {
     const authToken = sessionStorage.getItem("authToken");
@@ -25,13 +25,13 @@ const UserLoginPage = () => {
     e.preventDefault();
 
     axios
-      .post(`${BASE_API}/users/login`, {
-        username: username,
+      .post(`${BASE_API}/clinician/login`, {
+        username: userName,
         password: userPassword,
       })
       .then((res) => {
         sessionStorage.setItem("authToken", res.data.authToken);
-        setUserIsLoggedIn(true);
+        setClinicianIsLoggedIn(true);
       })
       .catch((err) => {
         setErrorMessage(err.response.data.message);
@@ -40,8 +40,8 @@ const UserLoginPage = () => {
 
   return (
     <>
-      {!UserIsLoggedIn && (
-        <div className="user-login">
+      {!ClinicianIsLoggedIn && (
+        <div className="clinician-login">
           <h1>Login</h1>
           <form onSubmit={loginHandler}>
             <div className="form-group">
@@ -70,4 +70,4 @@ const UserLoginPage = () => {
   );
 };
 
-export default UserLoginPage;
+export default ClinicianLoginPage;

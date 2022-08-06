@@ -19,7 +19,7 @@ app.get("/", (_req, res) => {
   res.status(200).send("Hello Leye");
 });
 
-app.use("/register", usersRouter);
+app.use("/users", usersRouter);
 
 app.use("/patient", patientRouter);
 

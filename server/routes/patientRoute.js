@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const patientController = require("../controllers/patientController");
 
-router.route("/welcomePage").get(patientController.getInfo);
+router.route("/info").get(patientController.getInfo);
 
 router.route("/weights").get(patientController.getWeights);
 

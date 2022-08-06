@@ -4,7 +4,7 @@ const Note = require("../models/noteModel");
 
 const getInfo = async (req, res) => {
   const patient = await Patient.query();
-  res.status(200).json(patient);
+  res.status(200).json(patient[0]);
 };
 
 const getWeights = async (req, res) => {
