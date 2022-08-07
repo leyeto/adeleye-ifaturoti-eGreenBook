@@ -1,24 +1,23 @@
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
-import ClinicianLogin from "../ClinicianLoginPage/ClinicianLoginPage";
-import "./UserLoginPage.scss";
+import "./ClinicianLoginPage.scss";
 
 const axios = require("axios");
 
-const UserLoginPage = () => {
-  const [UserIsLoggedIn, setUserIsLoggedIn] = useState(false);
+const ClinicianLoginPage = () => {
+  const [ClinicianIsLoggedIn, setClinicianIsLoggedIn] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
-  const [username, setUserName] = useState("");
+  const [userName, setUserName] = useState("");
   const [userPassword, setUserPassword] = useState("");
 
   const BASE_API = process.env.REACT_APP_API;
 
   useEffect(() => {
-    const authToken = sessionStorage.getItem("authToken");
+    const authToken = sessionStorage.getItem("clinicianAuthToken");
     if (authToken) {
-      setUserIsLoggedIn(true);
+      setClinicianIsLoggedIn(true);
     }
   }, []);
 
@@ -26,13 +25,16 @@ const UserLoginPage = () => {
     e.preventDefault();
 
     axios
-      .post(`${BASE_API}/users/login`, {
-        username: username,
+      .post(`${BASE_API}/clinicians/login`, {
+        username: userName,
         password: userPassword,
       })
       .then((res) => {
-        sessionStorage.setItem("authToken", res.data.authToken);
-        setUserIsLoggedIn(true);
+        sessionStorage.setItem(
+          "clinicianAuthToken",
+          res.data.clinicianAuthToken
+        );
+        setClinicianIsLoggedIn(true);
       })
       .catch((err) => {
         setErrorMessage(err.response.data.message);
@@ -41,8 +43,9 @@ const UserLoginPage = () => {
 
   return (
     <>
-      {!UserIsLoggedIn && (
-        <div className="user-login">
+      <h1>Can you see this</h1>
+      {!ClinicianIsLoggedIn && (
+        <div className="clinician-login">
           <h1>Login</h1>
           <form onSubmit={loginHandler}>
             <div className="form-group">
@@ -67,10 +70,8 @@ const UserLoginPage = () => {
           </form>
         </div>
       )}
-
-      {UserIsLoggedIn && <ClinicianLogin />}
     </>
   );
 };
 
-export default UserLoginPage;
+export default ClinicianLoginPage;

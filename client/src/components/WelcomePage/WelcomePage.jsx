@@ -5,10 +5,10 @@ const WelcomePage = ({ patientDetails }) => {
       <h2 className="welcome__header">My personal child health record</h2>
       <ol className="welcome__list-type">
         <li className="welcome__list-element">
-          My Name : {patientDetails.name}
+          My Name : {patientDetails.first_name}
         </li>
         <li className="welcome__list-element">
-          My NHS Number : {patientDetails.nhs}
+          My NHS Number : {patientDetails.nhs_number}
         </li>
         <li className="welcome__list-element">
           My date of birth : {patientDetails.dob}
