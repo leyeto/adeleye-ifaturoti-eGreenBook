@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
+import ClinicianLogin from "../ClinicianLoginPage/ClinicianLoginPage";
 import "./UserLoginPage.scss";
 
 const axios = require("axios");
@@ -66,6 +67,8 @@ const UserLoginPage = () => {
           </form>
         </div>
       )}
+
+      {UserIsLoggedIn && <ClinicianLogin />}
     </>
   );
 };

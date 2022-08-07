@@ -3,21 +3,35 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const User = require("../models/userModel");
 
-const SALTS_ROUNDS = 8;
+const SALTS_ROUNDS = 10;
 
 const signJwtToken = (user) => {
   const token = jwt.sign(
-    { id: user.id, sub: user.username },
+    { id: user.id, username: user.username },
     process.env.JWT_SECRET,
     { expiresIn: "1h" }
   );
   return token;
 };
 
-const addUser = async (req, res) => {
-  console.log("addUser from usersController called");
-  const user = await User.query().insert({ ...req.body });
-  res.status(200).json(user);
+const registerUser = async (req, res) => {
+  const { password } = req.body;
+
+  bcrypt.hash(password, SALTS_ROUNDS, async (err, hashedPassword) => {
+    if (err) {
+      return res
+        .status(500)
+        .json({ message: "Could not encrypt the supplied password" });
+    }
+
+    const user = await User.query().insert({
+      ...req.body,
+      password: hashedPassword,
+    });
+    const token = signJwtToken(user);
+
+    return res.status(201).json({ userAuthToken: token });
+  });
 };
 
 const authUser = async (req, res) => {
@@ -32,23 +46,22 @@ const authUser = async (req, res) => {
         console.log("passwordEntered ", password);
         console.log("DBpassword ", user[0].password);
         if (err) {
-          return res
-            .status(403)
-            .json({ message: "Username/Password combination is incorrect" });
-        } else {
+          return res.status(403).json({
+            message: "User Username/Password combination is incorrect",
+          });
+        }
+        if (success) {
           const token = signJwtToken(user[0]);
-          console.log("success reached");
+          console.log("User successfully authenticated");
 
-          return res.status(200).send({ authtoken: token });
+          return res.status(200).send({ userAuthtoken: token });
         }
       });
     })
     .catch((err) => console.log(err));
-
-  console.log(user);
 };
 
 module.exports = {
-  addUser,
+  registerUser,
   authUser,
 };

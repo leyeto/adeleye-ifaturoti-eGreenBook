@@ -1,7 +1,7 @@
-import "./ClinicianLoginPage.scss";
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
+import "./ClinicianLoginPage.scss";
 
 const axios = require("axios");
 
@@ -12,12 +12,12 @@ const ClinicianLoginPage = () => {
   const [userName, setUserName] = useState("");
   const [userPassword, setUserPassword] = useState("");
 
-  const BASE_API = process.env.API;
+  const BASE_API = process.env.REACT_APP_API;
 
   useEffect(() => {
-    const authToken = sessionStorage.getItem("authToken");
+    const authToken = sessionStorage.getItem("clinicianAuthToken");
     if (authToken) {
-      setUserIsLoggedIn(true);
+      setClinicianIsLoggedIn(true);
     }
   }, []);
 
@@ -25,12 +25,15 @@ const ClinicianLoginPage = () => {
     e.preventDefault();
 
     axios
-      .post(`${BASE_API}/clinician/login`, {
+      .post(`${BASE_API}/clinicians/login`, {
         username: userName,
         password: userPassword,
       })
       .then((res) => {
-        sessionStorage.setItem("authToken", res.data.authToken);
+        sessionStorage.setItem(
+          "clinicianAuthToken",
+          res.data.clinicianAuthToken
+        );
         setClinicianIsLoggedIn(true);
       })
       .catch((err) => {
@@ -40,6 +43,7 @@ const ClinicianLoginPage = () => {
 
   return (
     <>
+      <h1>Can you see this</h1>
       {!ClinicianIsLoggedIn && (
         <div className="clinician-login">
           <h1>Login</h1>
