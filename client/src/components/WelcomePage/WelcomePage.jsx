@@ -1,5 +1,6 @@
 import "./WelcomePage.scss";
 const WelcomePage = ({ patientDetails }) => {
+  console.log("patientDetails from WelcomePage : ", patientDetails);
   return (
     <div className="welcome">
       <h2 className="welcome__header">My personal child health record</h2>

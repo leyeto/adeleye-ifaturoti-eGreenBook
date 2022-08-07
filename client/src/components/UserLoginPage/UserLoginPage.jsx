@@ -6,7 +6,7 @@ import "./UserLoginPage.scss";
 
 const axios = require("axios");
 
-const UserLoginPage = () => {
+const UserLoginPage = ({ patientDetails }) => {
   const [UserIsLoggedIn, setUserIsLoggedIn] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -68,7 +68,7 @@ const UserLoginPage = () => {
         </div>
       )}
 
-      {UserIsLoggedIn && <ClinicianLogin />}
+      {UserIsLoggedIn && <ClinicianLogin patientDetails={patientDetails} />}
     </>
   );
 };

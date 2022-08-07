@@ -1,0 +1,11 @@
+.header {
+  &__list {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+  }
+
+  &__brand-logo {
+    width: 4rem;
+  }
+}
