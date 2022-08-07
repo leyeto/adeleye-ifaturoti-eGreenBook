@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import ClinicalNotes from "./components/ClinicalNotes/ClinicalNotes";
 import WeightLog from "./components/WeightLog/WeightLog";
 import UserLoginPage from "./components/UserLoginPage/UserLoginPage";
+import Header from "./components/Header/Header";
 
 const axios = require("axios");
 
@@ -25,8 +26,13 @@ function App() {
 
   return (
     <div className="App">
+      <Header />
       <Routes>
-        <Route exact path="/" element={<UserLoginPage />} />
+        <Route
+          exact
+          path="/"
+          element={<UserLoginPage patientDetails={patientDetails} />}
+        />
         <Route
           exact
           path="/home"

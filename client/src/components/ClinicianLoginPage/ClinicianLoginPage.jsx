@@ -1,11 +1,12 @@
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
+import WelcomePage from "../WelcomePage/WelcomePage";
 import "./ClinicianLoginPage.scss";
 
 const axios = require("axios");
 
-const ClinicianLoginPage = () => {
+const ClinicianLoginPage = ({ patientDetails }) => {
   const [ClinicianIsLoggedIn, setClinicianIsLoggedIn] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -70,6 +71,7 @@ const ClinicianLoginPage = () => {
           </form>
         </div>
       )}
+      {ClinicianIsLoggedIn && <WelcomePage patientDetails={patientDetails} />}
     </>
   );
 };
