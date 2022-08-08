@@ -1,3 +1,9 @@
+@use "./font-face" as *;
+@use "./variables" as *;
 * {
-  font-family: Georgia, "Times New Roman", Times, serif;
+  font-family: $font-stack;
+}
+
+h1 {
+  font-family: $font-brand;
 }

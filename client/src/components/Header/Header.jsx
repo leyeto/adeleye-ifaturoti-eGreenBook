@@ -6,15 +6,10 @@ const Header = () => {
   return (
     <header>
       <div className="header">
-        <ol className="header__list">
+        <ul className="header__list">
           <li className="header__list-item">
             <NavLink to="/">
-              {" "}
-              <img
-                className="header__brand-logo"
-                src={logo}
-                alt="eredbook-logo"
-              />
+              <h1 className="header__brand-words">eRedBook</h1>
             </NavLink>
           </li>
           <li className="header__list-item">
@@ -32,7 +27,7 @@ const Header = () => {
           <li className="header__list-item">
             <NavLink to="/"> Add New User</NavLink>
           </li>
-        </ol>
+        </ul>
       </div>
     </header>
   );
