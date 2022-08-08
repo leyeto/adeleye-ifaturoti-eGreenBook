@@ -1,0 +1,35 @@
+.weights {
+  &__input-graph {
+    margin: 2rem;
+    justify-content: space-evenly;
+    display: flex;
+  }
+
+  &__input-date {
+    margin: 1rem 0;
+    label {
+      width: 6rem;
+    }
+    input {
+      width: 10rem;
+    }
+  }
+  &__input-weight {
+    margin: 1rem 0;
+    label {
+      width: 6rem;
+    }
+    input {
+      width: 10rem;
+    }
+  }
+  &__input-age {
+    margin: 1rem 0;
+    label {
+      width: 6rem;
+    }
+    input {
+      width: 10rem;
+    }
+  }
+}

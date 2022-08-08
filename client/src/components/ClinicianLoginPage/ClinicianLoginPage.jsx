@@ -2,8 +2,9 @@ import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import WelcomePage from "../WelcomePage/WelcomePage";
-import "./ClinicianLoginPage.scss";
 import axios from "axios";
+import Button from "react-bootstrap/Button";
+import "./ClinicianLoginPage.scss";
 
 const ClinicianLoginPage = ({ patientDetails }) => {
   const [ClinicianIsLoggedIn, setClinicianIsLoggedIn] = useState(false);
@@ -46,10 +47,9 @@ const ClinicianLoginPage = ({ patientDetails }) => {
 
   return (
     <>
-      <h1>Can you see this</h1>
       {!ClinicianIsLoggedIn && (
         <div className="clinician-login">
-          <h1>Login</h1>
+          <h1>Clinician Login</h1>
           <form onSubmit={loginHandler}>
             <div className="form-group">
               <label htmlFor="username">Username</label>
@@ -69,7 +69,9 @@ const ClinicianLoginPage = ({ patientDetails }) => {
                 onChange={(e) => setUserPassword(e.target.value)}
               />
             </div>
-            <button>Login</button>
+            <Button type="sumbit" variant="primary">
+              Clinician Login
+            </Button>
           </form>
         </div>
       )}

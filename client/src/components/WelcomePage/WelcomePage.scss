@@ -1,0 +1,17 @@
+@use "../../styles/partials/colors" as c;
+
+.welcome {
+  &__info-picture {
+    display: flex;
+    justify-content: space-evenly;
+  }
+  &__patient-photo {
+    border-radius: 2rem dash c.$eRed-green;
+    width: 12rem;
+    height: 24rem;
+  }
+  &__baby-photo {
+    max-width: 10rem;
+    max-height: 20rem;
+  }
+}
