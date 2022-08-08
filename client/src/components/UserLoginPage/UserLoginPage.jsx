@@ -3,8 +3,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import ClinicianLogin from "../ClinicianLoginPage/ClinicianLoginPage";
 import "./UserLoginPage.scss";
-
-const axios = require("axios");
+import axios from "axios";
 
 const UserLoginPage = ({ patientDetails }) => {
   const [UserIsLoggedIn, setUserIsLoggedIn] = useState(false);
@@ -17,6 +16,7 @@ const UserLoginPage = ({ patientDetails }) => {
 
   useEffect(() => {
     const authToken = sessionStorage.getItem("authToken");
+    console.log("user authToken->", authToken);
     if (authToken) {
       setUserIsLoggedIn(true);
     }
@@ -31,11 +31,12 @@ const UserLoginPage = ({ patientDetails }) => {
         password: userPassword,
       })
       .then((res) => {
-        sessionStorage.setItem("authToken", res.data.authToken);
+        sessionStorage.setItem("authToken", res.data.userAuthtoken);
         setUserIsLoggedIn(true);
       })
       .catch((err) => {
         setErrorMessage(err.response.data.message);
+        console.log("user loginHandler", err);
       });
   };
 

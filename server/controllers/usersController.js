@@ -4,6 +4,7 @@ const bcrypt = require("bcrypt");
 const User = require("../models/userModel");
 
 const SALTS_ROUNDS = 10;
+console.log("Secret: ", process.env.JWT_SECRET);
 
 const signJwtToken = (user) => {
   const token = jwt.sign(
@@ -42,9 +43,6 @@ const authUser = async (req, res) => {
     .where("username", "=", username)
     .then((user) => {
       bcrypt.compare(password, user[0].password, function (err, success) {
-        console.log("username ", username);
-        console.log("passwordEntered ", password);
-        console.log("DBpassword ", user[0].password);
         if (err) {
           return res.status(403).json({
             message: "User Username/Password combination is incorrect",

@@ -12,6 +12,11 @@ const getWeights = async (req, res) => {
   res.status(200).json(weights);
 };
 
+const getWeightsWithDiff = async (req, res) => {
+  const weights = await Weight.query().select("TIMESTAMPDIFF", "");
+  res.status(200).json(weights);
+};
+
 const getClinicNotes = async (req, res) => {
   const notes = await Note.query();
   res.status(200).json(notes);
