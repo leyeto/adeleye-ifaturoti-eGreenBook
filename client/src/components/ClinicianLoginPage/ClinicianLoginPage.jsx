@@ -3,8 +3,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import WelcomePage from "../WelcomePage/WelcomePage";
 import "./ClinicianLoginPage.scss";
-
-const axios = require("axios");
+import axios from "axios";
 
 const ClinicianLoginPage = ({ patientDetails }) => {
   const [ClinicianIsLoggedIn, setClinicianIsLoggedIn] = useState(false);
@@ -16,7 +15,8 @@ const ClinicianLoginPage = ({ patientDetails }) => {
   const BASE_API = process.env.REACT_APP_API;
 
   useEffect(() => {
-    const authToken = sessionStorage.getItem("clinicianAuthToken");
+    const authToken = sessionStorage.getItem("clinicanAuthtoken");
+    console.log("clinician authToken->", authToken);
     if (authToken) {
       setClinicianIsLoggedIn(true);
     }
@@ -31,14 +31,16 @@ const ClinicianLoginPage = ({ patientDetails }) => {
         password: userPassword,
       })
       .then((res) => {
-        sessionStorage.setItem(
-          "clinicianAuthToken",
-          res.data.clinicianAuthToken
+        sessionStorage.setItem("clinicanAuthtoken", res.data.clinicanAuthtoken);
+        console.log(
+          "clinician Login sessionStorage->",
+          res.data.clinicanAuthtoken
         );
         setClinicianIsLoggedIn(true);
       })
       .catch((err) => {
         setErrorMessage(err.response.data.message);
+        console.log("clinician loginHandler->", err);
       });
   };
 

@@ -7,22 +7,31 @@ import ClinicalNotes from "./components/ClinicalNotes/ClinicalNotes";
 import WeightLog from "./components/WeightLog/WeightLog";
 import UserLoginPage from "./components/UserLoginPage/UserLoginPage";
 import Header from "./components/Header/Header";
-
-const axios = require("axios");
+import axios from "axios";
 
 function App() {
   const BACKEND_API = process.env.REACT_APP_API;
 
   const [patientDetails, setPatientDetails] = useState();
-  const API = "http://localhost:5500/patient/info";
+
+  // const API = "http://localhost:5500/patient/info";
 
   const getPatientDetails = async () => {
-    await axios
-      .get("http://localhost:5500/patient/info")
-      .then((response) => setPatientDetails(response.data))
-      .catch((err) => console.log(err));
+    try {
+      const response = await axios.get(`${BACKEND_API}/patient/info`);
+      setPatientDetails(response.data);
+    } catch (error) {
+      console.log("getPatientDetails error", error);
+    }
   };
-  useEffect(() => getPatientDetails, []);
+
+  useEffect(() => {
+    getPatientDetails();
+  }, []);
+
+  if (!patientDetails) {
+    return <p>Patients Loading...</p>;
+  }
 
   return (
     <div className="App">
