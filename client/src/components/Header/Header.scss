@@ -1,11 +1,24 @@
+@use "../../styles/partials/colors" as c;
+
+header {
+  background-color: c.$eRed-darkest-blue;
+  padding: 1.6rem;
+}
+
 .header {
   &__list {
     display: flex;
     justify-content: space-around;
     flex-direction: row;
+    align-items: baseline;
   }
 
   &__brand-logo {
     width: 4rem;
+  }
+
+  &__link {
+    color: c.$eRed-white;
+    text-decoration: none;
   }
 }

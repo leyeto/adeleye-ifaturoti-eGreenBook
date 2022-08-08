@@ -1,5 +1,14 @@
 import { useState } from "react";
-import { LineChart, Line, XAxis, YAxis } from "recharts";
+import Table from "react-bootstrap/Table";
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  Legend,
+  Tooltip,
+  CartesianGrid,
+} from "recharts";
 
 import "./WeightLog.scss";
 
@@ -49,15 +58,22 @@ const WeightLog = () => {
     ]);
   };
 
+  // const date = new Date("2019-01-22T02:53:53.000Z");
+  // undefined;
+  // date.toLocaleDateString();
+  // ("1/22/2019");
+  // date.toLocaleTimeString();
+  // ("2:53:53 AM");
+
   return (
     <>
-      <h1>React Table Used below</h1>
-      <table>
+      <h1>Child's Weight Log</h1>
+      <Table>
         <thead>
           <tr>
             <th>Date</th>
-            <th>Age</th>
-            <th>Weight</th>
+            <th>{`Age (weeks)`}</th>
+            <th>{`Weight (kg)`}</th>
             <th>Clinician</th>
           </tr>
         </thead>
@@ -73,30 +89,39 @@ const WeightLog = () => {
               </tr>
             );
           })}
+          {/* INPUT row in table */}
         </tbody>
-      </table>
-      <form onSubmit={(e) => submitHandler(e)}>
-        <div className="date">
-          <label htmlFor="date">Date</label>
-          <input type="text" />
-        </div>
-        <div className="weight">
-          <label htmlFor="weight">Weight</label>
-          <input type="text" />
-        </div>
-        <div className="age">
-          <label htmlFor="date">Age</label>
-          <input type="text" />
-        </div>
-        <input type="submit" />
-      </form>
-      {/* GRAPH FOR DATA STARTS HERE */}
+      </Table>
 
-      <LineChart width={400} height={400} data={weights}>
-        <Line type="monotone" dataKey="weight" stroke="#8884d8" />
-        <XAxis dataKey="age" type="number" />
-        <YAxis dataKey="weight" type="number" />
-      </LineChart>
+      <div className="weights__input-graph">
+        <div className="weights__input">
+          <form onSubmit={(e) => submitHandler(e)}>
+            <div className="weights__input-date">
+              <label htmlFor="date">Date</label>
+              <input type="text" />
+            </div>
+            <div className="weights__input-weight">
+              <label htmlFor="weight">Weight</label>
+              <input type="text" />
+            </div>
+            <div className="weights__input-age">
+              <label htmlFor="date">{`Age (weeks)`}</label>
+              <input type="text" />
+            </div>
+            <input type="submit" />
+          </form>
+        </div>
+        <div className="weights__graph">
+          <LineChart width={400} height={400} data={weights}>
+            <CartesianGrid strokeDasharray="3 3" />
+            <Line type="monotone" dataKey="weight" stroke="#508991" />
+            <Legend />
+            <Tooltip />
+            <XAxis dataKey="age" type="number" />
+            <YAxis dataKey="weight" type="number" />
+          </LineChart>
+        </div>
+      </div>
     </>
   );
 };

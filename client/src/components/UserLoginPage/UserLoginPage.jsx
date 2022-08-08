@@ -2,8 +2,9 @@ import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import ClinicianLogin from "../ClinicianLoginPage/ClinicianLoginPage";
-import "./UserLoginPage.scss";
 import axios from "axios";
+import Button from "react-bootstrap/Button";
+import "./UserLoginPage.scss";
 
 const UserLoginPage = ({ patientDetails }) => {
   const [UserIsLoggedIn, setUserIsLoggedIn] = useState(false);
@@ -44,7 +45,11 @@ const UserLoginPage = ({ patientDetails }) => {
     <>
       {!UserIsLoggedIn && (
         <div className="user-login">
-          <h1>Login</h1>
+          <h1 style={{ textAlign: "center" }}>Electronic Red Book</h1>
+          <h2 style={{ textAlign: "center" }}>
+            Documenting your baby's health
+          </h2>
+          <h3>{`Login (parent/guardian)`}</h3>
           <form onSubmit={loginHandler}>
             <div className="form-group">
               <label htmlFor="username">Username</label>
@@ -64,7 +69,9 @@ const UserLoginPage = ({ patientDetails }) => {
                 onChange={(e) => setUserPassword(e.target.value)}
               />
             </div>
-            <button>Login</button>
+            <Button variant="primary" type="submit">
+              User Login
+            </Button>
           </form>
         </div>
       )}

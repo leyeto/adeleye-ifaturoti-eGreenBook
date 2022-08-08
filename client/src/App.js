@@ -36,24 +36,27 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <Routes>
-        <Route
-          exact
-          path="/"
-          element={<UserLoginPage patientDetails={patientDetails} />}
-        />
-        <Route
-          exact
-          path="/home"
-          element={<WelcomePage patientDetails={patientDetails} />}
-        />
-        <Route
-          path="/sticker"
-          element={<NameSticker patientDetails={patientDetails} />}
-        />
-        <Route path="/weights" element={<WeightLog />} />
-        <Route path="/notes" element={<ClinicalNotes />} />
-      </Routes>
+      <main>
+        <Routes>
+          <Route
+            exact
+            path="/"
+            element={<UserLoginPage patientDetails={patientDetails} />}
+          />
+          <Route
+            exact
+            path="/home"
+            element={<WelcomePage patientDetails={patientDetails} />}
+          />
+          <Route
+            path="/sticker"
+            element={<NameSticker patientDetails={patientDetails} />}
+          />
+          <Route path="/weights" element={<WeightLog />} />
+          <Route path="/notes" element={<ClinicalNotes />} />
+        </Routes>
+      </main>
+      <footer></footer>
     </div>
   );
 }

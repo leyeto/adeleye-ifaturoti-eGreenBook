@@ -1,6 +1,7 @@
 @forward "./styles/partials/";
+@import "~bootstrap/scss/bootstrap";
 
-.App {
-  width: min(100% - 3.2rem, 1280px);
-  margin: 1.6rem auto;
+main {
+  width: max(100% - 4rem, 1020px);
+  margin: 2rem;
 }

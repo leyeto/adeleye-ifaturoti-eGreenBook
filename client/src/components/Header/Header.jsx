@@ -8,24 +8,38 @@ const Header = () => {
       <div className="header">
         <ul className="header__list">
           <li className="header__list-item">
-            <NavLink to="/">
+            <NavLink className="header__link" to="/">
               <h1 className="header__brand-words">eRedBook</h1>
             </NavLink>
           </li>
           <li className="header__list-item">
-            <NavLink to="/weights">Weights Log</NavLink>
+            <NavLink className="header__link" to="/weights">
+              Weights Log
+            </NavLink>
           </li>
           <li className="header__list-item">
-            <NavLink to="/clinic-notes"> Clinical Notes</NavLink>
+            <NavLink className="header__link" to="/clinic-notes">
+              {" "}
+              Clinical Notes
+            </NavLink>
           </li>
           <li className="header__list-item">
-            <NavLink to="/"> Login/Logout Clinician</NavLink>
+            <NavLink className="header__link" to="/">
+              {" "}
+              Login/Logout Clinician
+            </NavLink>
           </li>
           <li className="header__list-item">
-            <NavLink to="/"> Login/Logout User</NavLink>
+            <NavLink className="header__link" to="/">
+              {" "}
+              Login/Logout User
+            </NavLink>
           </li>
           <li className="header__list-item">
-            <NavLink to="/"> Add New User</NavLink>
+            <NavLink className="header__link" to="/">
+              {" "}
+              Add New User
+            </NavLink>
           </li>
         </ul>
       </div>
