@@ -2,6 +2,10 @@ import logo from "../../assets/logo/redbook-logo.png";
 import { NavLink } from "react-router-dom";
 import "./Header.scss";
 
+const logoutClinicianHandler = () => {
+  sessionStorage.removeItem("clinicianAuthToken");
+};
+
 const Header = () => {
   return (
     <header>
@@ -24,7 +28,7 @@ const Header = () => {
             </NavLink>
           </li>
           <li className="header__list-item">
-            <NavLink className="header__link" to="/">
+            <NavLink className="header__link" to="/clinicians/logout">
               {" "}
               Login/Logout Clinician
             </NavLink>
