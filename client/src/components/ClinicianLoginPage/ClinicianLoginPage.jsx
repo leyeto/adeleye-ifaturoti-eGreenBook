@@ -45,6 +45,11 @@ const ClinicianLoginPage = ({ patientDetails }) => {
       });
   };
 
+  const clinicianLogoutHandler = () => {
+    sessionStorage.remove("clinicianAuthToken");
+    setClinicianIsLoggedIn(false);
+  };
+
   return (
     <>
       {!ClinicianIsLoggedIn && (

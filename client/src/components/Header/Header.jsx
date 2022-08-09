@@ -2,10 +2,6 @@ import logo from "../../assets/logo/redbook-logo.png";
 import { NavLink } from "react-router-dom";
 import "./Header.scss";
 
-const logoutClinicianHandler = () => {
-  sessionStorage.removeItem("clinicianAuthToken");
-};
-
 const Header = () => {
   return (
     <header>
