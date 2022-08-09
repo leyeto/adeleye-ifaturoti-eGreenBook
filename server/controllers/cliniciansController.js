@@ -9,7 +9,7 @@ const signJwtToken = (user) => {
     { id: user.id, username: user.username },
     process.env.JWT_SECRET,
     {
-      expiresIn: "0.4h",
+      expiresIn: "1200000",
     }
   );
   return token;
