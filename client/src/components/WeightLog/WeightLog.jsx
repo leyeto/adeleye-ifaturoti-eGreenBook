@@ -1,5 +1,8 @@
+import { useEffect } from "react";
 import { useState } from "react";
 import Table from "react-bootstrap/Table";
+import { convertDaysToWeeks, convertTimestampToDate } from "../../utils/utils";
+
 import {
   LineChart,
   Line,
@@ -11,6 +14,8 @@ import {
 } from "recharts";
 
 import "./WeightLog.scss";
+
+const axios = require("axios").default;
 
 const WeightLog = () => {
   const weightData = [
@@ -45,7 +50,37 @@ const WeightLog = () => {
       clinician: "Sandra",
     },
   ];
-  const [weights, setWeights] = useState(weightData);
+  const [weights, setWeights] = useState([]);
+
+  const BACKEND_API = process.env.REACT_APP_API;
+
+  const getWeights = async () => {
+    try {
+      const response = await axios.get(`${BACKEND_API}/patient/weights`);
+      console.log("getWeights data: ", response.data[0]);
+      const rawArray = response.data[0];
+      console.log("rawArray", rawArray);
+      const temp = [];
+
+      rawArray.forEach((element) => {
+        temp.push({
+          date: convertTimestampToDate(element.date),
+          weight: element.weight,
+          age: convertDaysToWeeks(element.age_in_days),
+          weight: element.weight,
+          clinician: element.clinician,
+        });
+      });
+
+      setWeights(temp);
+    } catch (error) {
+      console.log("getWeights error: ", error);
+    }
+  };
+
+  useEffect(() => {
+    getWeights();
+  }, []);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -58,12 +93,9 @@ const WeightLog = () => {
     ]);
   };
 
-  // const date = new Date("2019-01-22T02:53:53.000Z");
-  // undefined;
-  // date.toLocaleDateString();
-  // ("1/22/2019");
-  // date.toLocaleTimeString();
-  // ("2:53:53 AM");
+  if (weights.length < 1) {
+    return <h2>Page Loading</h2>;
+  }
 
   return (
     <>

@@ -3,7 +3,7 @@ const patientController = require("../controllers/patientController");
 
 router.route("/info").get(patientController.getInfo);
 
-router.route("/weights").get(patientController.getWeights);
+router.route("/weights").get(patientController.getWeightsWithDiff);
 
 router.route("/clinic-notes").get(patientController.getClinicNotes);
 
