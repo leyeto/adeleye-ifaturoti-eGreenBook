@@ -2,6 +2,7 @@ const Patient = require("../models/patientModel");
 const Weight = require("../models/weightModel");
 const Note = require("../models/noteModel");
 const { default: knex } = require("knex");
+const Clinician = require("../models/clinicianModel");
 
 const getInfo = async (req, res) => {
   const patient = await Patient.query();
@@ -31,7 +32,10 @@ const getClinicNotes = async (req, res) => {
 };
 
 const addWeight = async (req, res) => {
-  const newWeight = await Weight.query().insert({ ...req.body });
+  console.log("addWeight reached");
+  const newWeight = await Weight.query().insert({
+    ...req.body,
+  });
   res.status(201).send(newWeight);
 };
 
