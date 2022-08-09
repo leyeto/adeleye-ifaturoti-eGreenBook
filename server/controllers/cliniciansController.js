@@ -9,7 +9,7 @@ const signJwtToken = (user) => {
     { id: user.id, username: user.username },
     process.env.JWT_SECRET,
     {
-      expiresIn: "0.4h",
+      expiresIn: "1200000",
     }
   );
   return token;
@@ -55,10 +55,15 @@ const authClinician = async (req, res) => {
           const token = signJwtToken(user[0]);
           console.log("Clinician successfully authenticated");
 
-          return res.status(200).send({ clinicanAuthtoken: token });
+          return res.status(200).send({ clinicanAuthToken: token });
         }
       });
     });
 };
 
-module.exports = { registerClinican, authClinician };
+const logoutClinician = async (req, res) => {
+  console.log("logout Clinician called");
+  return res.status(201).send({ clinicianAuthToken: null });
+};
+
+module.exports = { registerClinican, authClinician, logoutClinician };

@@ -24,7 +24,7 @@ const Header = () => {
             </NavLink>
           </li>
           <li className="header__list-item">
-            <NavLink className="header__link" to="/">
+            <NavLink className="header__link" to="/clinicians/logout">
               {" "}
               Login/Logout Clinician
             </NavLink>

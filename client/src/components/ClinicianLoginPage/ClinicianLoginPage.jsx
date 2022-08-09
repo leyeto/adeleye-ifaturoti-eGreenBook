@@ -16,7 +16,7 @@ const ClinicianLoginPage = ({ patientDetails }) => {
   const BASE_API = process.env.REACT_APP_API;
 
   useEffect(() => {
-    const authToken = sessionStorage.getItem("clinicanAuthtoken");
+    const authToken = sessionStorage.getItem("clinicanAuthToken");
     console.log("clinician authToken->", authToken);
     if (authToken) {
       setClinicianIsLoggedIn(true);
@@ -32,10 +32,10 @@ const ClinicianLoginPage = ({ patientDetails }) => {
         password: userPassword,
       })
       .then((res) => {
-        sessionStorage.setItem("clinicanAuthtoken", res.data.clinicanAuthtoken);
+        sessionStorage.setItem("clinicanAuthToken", res.data.clinicanAuthToken);
         console.log(
           "clinician Login sessionStorage->",
-          res.data.clinicanAuthtoken
+          res.data.clinicanAuthToken
         );
         setClinicianIsLoggedIn(true);
       })
@@ -43,6 +43,11 @@ const ClinicianLoginPage = ({ patientDetails }) => {
         setErrorMessage(err.response.data.message);
         console.log("clinician loginHandler->", err);
       });
+  };
+
+  const clinicianLogoutHandler = () => {
+    sessionStorage.remove("clinicianAuthToken");
+    setClinicianIsLoggedIn(false);
   };
 
   return (
