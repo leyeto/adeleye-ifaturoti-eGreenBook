@@ -36,7 +36,7 @@ const Header = () => {
             </NavLink>
           </li>
           <li className="header__list-item">
-            <NavLink className="header__link" to="/">
+            <NavLink className="header__link" to="/patient/add-user">
               {" "}
               Add New User
             </NavLink>

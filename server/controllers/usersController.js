@@ -31,7 +31,9 @@ const registerUser = async (req, res) => {
     });
     const token = signJwtToken(user);
 
-    return res.status(201).json({ userAuthToken: token });
+    return res
+      .status(201)
+      .json({ userAuthToken: token, message: `${user} created` });
   });
 };
 
