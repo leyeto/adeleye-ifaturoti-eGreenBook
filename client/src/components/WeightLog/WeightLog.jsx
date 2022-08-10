@@ -1,5 +1,8 @@
+import { useEffect } from "react";
 import { useState } from "react";
 import Table from "react-bootstrap/Table";
+import { convertDaysToWeeks, convertTimestampToDate } from "../../utils/utils";
+
 import {
   LineChart,
   Line,
@@ -8,9 +11,12 @@ import {
   Legend,
   Tooltip,
   CartesianGrid,
+  ResponsiveContainer,
 } from "recharts";
 
 import "./WeightLog.scss";
+
+const axios = require("axios").default;
 
 const WeightLog = () => {
   const weightData = [
@@ -45,25 +51,56 @@ const WeightLog = () => {
       clinician: "Sandra",
     },
   ];
-  const [weights, setWeights] = useState(weightData);
+  const [weights, setWeights] = useState([]);
+
+  const BACKEND_API = process.env.REACT_APP_API;
+
+  const getWeights = async () => {
+    try {
+      const response = await axios.get(`${BACKEND_API}/patient/weights`);
+      console.log("getWeights data: ", response.data[0]);
+      const rawArray = response.data[0];
+      console.log("rawArray", rawArray);
+      const temp = [];
+
+      rawArray.forEach((element) => {
+        temp.push({
+          date: convertTimestampToDate(element.date),
+          weight: element.weight,
+          age: convertDaysToWeeks(element.age_in_days),
+          weight: element.weight,
+          clinician: element.clinician,
+        });
+      });
+
+      setWeights(temp);
+    } catch (error) {
+      console.log("getWeights error: ", error);
+    }
+  };
+
+  useEffect(() => {
+    getWeights();
+  }, []);
 
   const submitHandler = (e) => {
     e.preventDefault();
     const newDate = e.target[0].value;
     const newWeight = e.target[1].value;
     const newAge = e.target[2].value;
-    setWeights([
-      ...weights,
-      { date: newDate, weight: newWeight, age: newAge, clinician: "Default" },
-    ]);
+
+    axios
+      .post(`${BACKEND_API}/patient/weights`, { weight: newWeight })
+      .then((response) => {
+        console.log(response);
+        getWeights();
+      })
+      .catch((err) => console.log("post weight error: ", err));
   };
 
-  // const date = new Date("2019-01-22T02:53:53.000Z");
-  // undefined;
-  // date.toLocaleDateString();
-  // ("1/22/2019");
-  // date.toLocaleTimeString();
-  // ("2:53:53 AM");
+  if (weights.length < 1) {
+    return <h2>Page Loading</h2>;
+  }
 
   return (
     <>
@@ -112,7 +149,7 @@ const WeightLog = () => {
           </form>
         </div>
         <div className="weights__graph">
-          <LineChart width={400} height={400} data={weights}>
+          <LineChart width={600} height={600} data={weights}>
             <CartesianGrid strokeDasharray="3 3" />
             <Line type="monotone" dataKey="weight" stroke="#508991" />
             <Legend />

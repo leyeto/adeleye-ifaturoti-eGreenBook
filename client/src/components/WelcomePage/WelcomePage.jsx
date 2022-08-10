@@ -1,13 +1,14 @@
 import Card from "react-bootstrap/Card";
 import babyImg from "../../assets/images/baby.jpg";
+import {
+  convertTimestampToTime,
+  convertTimestampToDate,
+} from "../../utils/utils";
 import "./WelcomePage.scss";
 const WelcomePage = ({ patientDetails }) => {
   // console.log("patientDetails from WelcomePage : ", patientDetails);
-
-  const dob = new Date(patientDetails.dob);
-  const birthDate = dob.toDateString();
-  const birthTime = dob.toLocaleTimeString();
-  console.log(dob.toDateString());
+  const dateOfbirth = convertTimestampToDate(patientDetails.dob);
+  const timeOfBirth = convertTimestampToTime(patientDetails.dob);
 
   return (
     <div className="welcome">
@@ -29,7 +30,7 @@ const WelcomePage = ({ patientDetails }) => {
                   My NHS Number : {patientDetails.nhs_number}
                 </li>
                 <li className="welcome__list-element">
-                  My date of birth : {`${birthDate} @ ${birthTime}`}
+                  My date of birth :{` ${dateOfbirth} @ ${timeOfBirth}`}
                 </li>
                 <li className="welcome__list-element">
                   Child's gender : {patientDetails.gender}
