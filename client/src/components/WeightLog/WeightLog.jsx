@@ -11,6 +11,7 @@ import {
   Legend,
   Tooltip,
   CartesianGrid,
+  ResponsiveContainer,
 } from "recharts";
 
 import "./WeightLog.scss";
@@ -87,10 +88,14 @@ const WeightLog = () => {
     const newDate = e.target[0].value;
     const newWeight = e.target[1].value;
     const newAge = e.target[2].value;
-    setWeights([
-      ...weights,
-      { date: newDate, weight: newWeight, age: newAge, clinician: "Default" },
-    ]);
+
+    axios
+      .post(`${BACKEND_API}/patient/weights`, { weight: newWeight })
+      .then((response) => {
+        console.log(response);
+        getWeights();
+      })
+      .catch((err) => console.log("post weight error: ", err));
   };
 
   if (weights.length < 1) {
@@ -144,7 +149,7 @@ const WeightLog = () => {
           </form>
         </div>
         <div className="weights__graph">
-          <LineChart width={400} height={400} data={weights}>
+          <LineChart width={600} height={600} data={weights}>
             <CartesianGrid strokeDasharray="3 3" />
             <Line type="monotone" dataKey="weight" stroke="#508991" />
             <Legend />
