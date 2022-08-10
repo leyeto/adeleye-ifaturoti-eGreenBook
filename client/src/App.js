@@ -8,6 +8,7 @@ import WeightLog from "./components/WeightLog/WeightLog";
 import UserLoginPage from "./components/UserLoginPage/UserLoginPage";
 import Header from "./components/Header/Header";
 import axios from "axios";
+import AddNewUser from "./components/AddNewUser/AddNewUser";
 
 function App() {
   const BACKEND_API = process.env.REACT_APP_API;
@@ -54,6 +55,7 @@ function App() {
           />
           <Route path="/weights" element={<WeightLog />} />
           <Route path="/notes" element={<ClinicalNotes />} />
+          <Route path="/patient/add-user" element={<AddNewUser />} />
         </Routes>
       </main>
       <footer></footer>

@@ -11,7 +11,6 @@ import {
   Legend,
   Tooltip,
   CartesianGrid,
-  ResponsiveContainer,
 } from "recharts";
 
 import "./WeightLog.scss";
