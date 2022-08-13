@@ -1,0 +1,10 @@
+PORT
+
+# Created via Node JS by running `node` and then `crypto.randomBytes(64).toString("hex")` in the terminal
+
+JWT_SECRET
+
+
+DB_username
+
+DB_password
