@@ -4,7 +4,6 @@
   box-sizing: border-box;
 }
 
-html,
 body,
 div,
 span,
@@ -20,7 +19,6 @@ h6,
 p,
 blockquote,
 pre,
-a,
 code,
 em,
 img,
@@ -58,9 +56,6 @@ video {
   margin: 0;
   padding: 0;
   border: 0;
-  font-size: 62.5%;
-  font: inherit;
-  font-family: Georgia, Arial, Verdana, Calibri, sans-serif;
   vertical-align: baseline;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -105,4 +100,10 @@ table {
 input {
   -webkit-appearance: none;
   border-radius: 0;
+}
+html {
+  font-size: 100%;
+}
+a {
+  text-decoration: none;
 }

@@ -1,1 +1,7 @@
 @forward "./styles/partials/";
+@import "~bootstrap/scss/bootstrap";
+
+main {
+  width: max(100% - 4rem, 1020px);
+  margin: 2rem;
+}

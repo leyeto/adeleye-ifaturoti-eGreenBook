@@ -1,0 +1,20 @@
+.user-login {
+  &__button {
+    margin-left: 10rem;
+  }
+}
+
+.form-group {
+  margin-left: 10rem;
+  label {
+    width: 10rem;
+    margin: 0.5rem;
+  }
+  input {
+    width: 15rem;
+    margin: 0.5rem;
+  }
+  button {
+    margin: 0.5rem 0;
+  }
+}
