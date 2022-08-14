@@ -74,7 +74,11 @@ const ClinicianLoginPage = ({ patientDetails }) => {
                 onChange={(e) => setUserPassword(e.target.value)}
               />
             </div>
-            <Button type="sumbit" variant="primary">
+            <Button
+              className="clinician-login__button"
+              type="sumbit"
+              variant="primary"
+            >
               Clinician Login
             </Button>
           </form>

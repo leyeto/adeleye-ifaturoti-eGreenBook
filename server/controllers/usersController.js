@@ -44,7 +44,9 @@ const authUser = async (req, res) => {
     .select()
     .where("username", "=", username)
     .then((user) => {
-      bcrypt.compare(password, user[0].password, function (err, success) {
+      const passwordInDb = user[0].password;
+      console.log("uservalue in authUser/usersController :", user);
+      bcrypt.compare(password, passwordInDb, function (err, success) {
         if (err) {
           return res.status(403).json({
             message: "User Username/Password combination is incorrect",

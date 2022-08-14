@@ -10,6 +10,7 @@ import {
   YAxis,
   Legend,
   Tooltip,
+  Label,
   CartesianGrid,
 } from "recharts";
 
@@ -131,13 +132,14 @@ const WeightLog = () => {
 
       <div className="weights__input-graph">
         <div className="weights__input">
+          <h4>{`Add new weight (date set as today)`}</h4>
           <form onSubmit={(e) => submitHandler(e)}>
             <div className="weights__input-date">
               <label htmlFor="date">Date</label>
               <input type="text" />
             </div>
             <div className="weights__input-weight">
-              <label htmlFor="weight">Weight</label>
+              <label htmlFor="weight">{`Weight (kg)`}</label>
               <input type="text" />
             </div>
             <div className="weights__input-age">
@@ -153,8 +155,30 @@ const WeightLog = () => {
             <Line type="monotone" dataKey="weight" stroke="#508991" />
             <Legend />
             <Tooltip />
-            <XAxis dataKey="age" type="number" />
-            <YAxis dataKey="weight" type="number" />
+            <XAxis dataKey="age" type="number">
+              <Label
+                position="bottom"
+                offset={0}
+                style={{
+                  textAnchor: "middle",
+                  fontSize: "100%",
+                  fill: "black",
+                }}
+                angle={0}
+                value={"Age (weeks)"}
+              />
+            </XAxis>
+            <YAxis dataKey="weight" type="number">
+              <Label
+                style={{
+                  textAnchor: "middle",
+                  fontSize: "100%",
+                  fill: "black",
+                }}
+                angle={270}
+                value={"Weight (kg)"}
+              />
+            </YAxis>
           </LineChart>
         </div>
       </div>

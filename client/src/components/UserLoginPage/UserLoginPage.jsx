@@ -49,7 +49,7 @@ const UserLoginPage = ({ patientDetails }) => {
           <h2 style={{ textAlign: "center" }}>
             Documenting your baby's health
           </h2>
-          <h3>{`Login (parent/guardian)`}</h3>
+          <h3 className="user-login__login-header">{`Login (parent/guardian)`}</h3>
           <form onSubmit={loginHandler}>
             <div className="form-group">
               <label htmlFor="username">Username</label>
@@ -69,7 +69,11 @@ const UserLoginPage = ({ patientDetails }) => {
                 onChange={(e) => setUserPassword(e.target.value)}
               />
             </div>
-            <Button variant="primary" type="submit">
+            <Button
+              className="user-login__button"
+              variant="primary"
+              type="submit"
+            >
               User Login
             </Button>
           </form>
